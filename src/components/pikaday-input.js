@@ -62,7 +62,7 @@ export default class extends Component {
       return;
     }
     if (!this.#heardValue) {
-      this.onSelect(null);
+      // this.onSelect(null);
     }
     this.args.onClose?.();
   }
