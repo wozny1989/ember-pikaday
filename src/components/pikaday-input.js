@@ -1,7 +1,5 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { findMoment } from '../find-moment';
-const moment = findMoment();
 
 export default class extends Component {
   constructor(owner, args) {
@@ -16,7 +14,7 @@ export default class extends Component {
     let { value, useUTC } = this.args;
     if (useUTC && value) {
       let format = 'YYYY-MM-DD';
-      value = moment(moment.utc(value).format(format), format).toDate();
+      value = dayjs(dayjs.utc(value).format(format), format).toDate();
     }
     return value;
   }
@@ -87,7 +85,7 @@ export default class extends Component {
   @action
   onSelect(date) {
     if (this.args.useUTC && date) {
-      date = moment
+      date = dayjs
         .utc([date.getFullYear(), date.getMonth(), date.getDate()])
         .toDate();
     }
